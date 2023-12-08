@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# GrepIt
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A dynamic trivia platform for mastering bash commands, HTML tags, JS keywords, and more(as the name suggests "Grep!"). Challenge yourself, compete with others, and customize your learning experience."
 
-## Available Scripts
+## Tech Stack:
 
-In the project directory, you can run:
+-   React.js
+-   JS
+-   CSS
 
-### `npm start`
+## Dependencies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+You need npm/yarn installed in your local machine in order to run this app.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How To Setup
 
-### `npm test`
+-   Make sure your machine is having internet connection.
+-   Open shell (which ever your OS support) on your PC.
+-   Change drive to the location where you want your project to be copied.
+-   Clone it to your local setup by using command git clone `<repo link>`.
+-   Once cloned, Run the following command in the root directory of the project `npm install`.
+-   Make sure you have required enviornment variables saved in the `.env` file in the root of the project. A file `.env.example` is attached for reference.
+-   After the process is completed, run the command `npm start`.
+-   The backend will be live on `localhost:4000`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation:
 
-### `npm run build`
+```bash
+  npm install
+  npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🌐 Features:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-   Engage in multiple-choice questions related to bash commands, HTML tags, JS keywords, and more.
+-   Track your progress and compete for a spot on the leaderboard. 
+-   Your personal high-score will be recorded, allowing you to monitor your improvement over time.
+-   Provides a stress-free and fun learning environment.
+-   Helps you enhance your understanding of these topics.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Reference Links:
 
-### `npm run eject`
+-   [Download and install the latest version of Git.](https://git-scm.com/downloads)
+-   [Set your username in Git.](https://help.github.com/articles/setting-your-username-in-git)
+-   [Set your commit email address in Git.](https://help.github.com/articles/setting-your-commit-email-address-in-git)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Directory Structure:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Claim an issue:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Comment on the issue. In case of no activity on the issue even after 2 days, the issue will be reassigned. If you have difficulty approaching the issue, feel free to ask on our discord channel.
 
-## Learn More
+## Communication:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Whether you are working on a new feature or facing a doubt please feel free to ask us on our [discord](https://discord.gg/D9999YTkS8) channel. We will be happy to help you out.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Guidelines:
 
-### Code Splitting
+Please help us follow the best practice to make it easy for the reviewer as well as the contributor. We want to focus on the code quality more than on managing pull request ethics.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+-   People before code: If any of the following rules are violated, the pull-requests will be rejected. This is to create an easy and joyful onboarding process for new programmers and first-time contributors.
 
-### Analyzing the Bundle Size
+-   Single commit per pull request and name the commit as something meaningful, example: Adding <-your-name-> in students/mentors section.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-   Reference the issue numbers in the commit message if it resolves an open issue. Follow the pattern provided in `.github/pull_request_template.md`
 
-### Making a Progressive Web App
+-   Provide the link to live gh-pages from your forked repository or relevant screenshot for easier review.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-   Pull Request older than 3 days with no response from the contributor shall be marked closed.
 
-### Advanced Configuration
+-   Avoid duplicate PRs, if need be comment on the older PR with the PR number of the follow-up (new PR) and close the obsolete PR yourself.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+-   Be polite: Be polite to other community members.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
