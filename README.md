@@ -18,10 +18,9 @@ You need npm/yarn installed in your local machine in order to run this app.
 -   Open shell (which ever your OS support) on your PC.
 -   Change drive to the location where you want your project to be copied.
 -   Clone it to your local setup by using command git clone `<repo link>`.
--   Once cloned, Run the following command in the root directory of the project `npm install`.
--   Make sure you have required enviornment variables saved in the `.env` file in the root of the project. A file `.env.example` is attached for reference.
--   After the process is completed, run the command `npm start`.
--   The backend will be live on `localhost:4000`.
+-    Once cloned, Run the following command in the root directory of the project ```npm install```.
+-   After the process is completed, run the command ```npm run dev```.
+-   The website will be live on ```localhost:3000```.
 
 ## Installation:
 
