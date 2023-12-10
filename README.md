@@ -1,6 +1,6 @@
 # GrepIt
 
-A dynamic trivia platform for mastering bash commands, HTML tags, JS keywords, and more(as the name suggests "Grep!"). Challenge yourself, compete with others, and customize your learning experience."
+A dynamic trivia platform for mastering bash commands, HTML tags, JS keywords, and more(as the name suggests "Grep!"). Challenge yourself, compete with others, and customize your learning experience.
 
 ## Tech Stack:
 
