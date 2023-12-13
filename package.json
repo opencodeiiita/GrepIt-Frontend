@@ -1,21 +1,23 @@
 {
-  "name": "xyz",
+  "name": "grepit-frontend",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
+    "@material-tailwind/react": "^2.1.6",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "set PORT=7777 && react-scripts start",
+    "build": "set PORT=7777 && react-scripts build",
+    "eject": "set PORT=7777 && react-scripts eject",
+    "format": "prettier --write \"src/**/*.+(js|jsx|json|css|scss)\""
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +36,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "antd": "^5.12.2",
+    "prettier": "^3.1.1",
+    "tailwindcss": "^3.3.6"
   }
 }
