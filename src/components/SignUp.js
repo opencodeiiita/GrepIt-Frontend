@@ -1,10 +1,49 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import axios from 'axios'
 const SignUp = () => {
+
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+
+    const handleName = (e) => {
+        setName(e.target.value)
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value)
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value)
+    }
+    const formData = new FormData();
+    
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+
+    const handleApi =  async ( event ) => {
+        event.preventDefault();
+        const apiUrl = process.env.REACT_APP_API_URL;
+        try{
+            const response = await axios.post(apiUrl+'/auth/register',formData);
+            console.log('success',response)
+        } catch (error ){
+            console.log('failed',error)
+        }
+    }
+
     return (
+
+
+
+
+
         <div className='h-full w-full flex flex-row'>
             <img
-                src=""
+                src="assets/images/maxresdefault.svg"
                 alt="logo"
                 className='hidden xl:block h-screen w-1/2 object-cover bg-no-repeat'
             />
@@ -28,6 +67,9 @@ const SignUp = () => {
                                 id="name"
                                 type="text"
                                 placeholder="Name"
+                                value={name}
+                                onChange={handleName}
+
                             />
                         </div>
 
@@ -43,6 +85,8 @@ const SignUp = () => {
                                 id="email"
                                 type="email"
                                 placeholder="Email"
+                                value={email}
+                                onChange={handleEmail}
                             />
                         </div>
 
@@ -58,6 +102,8 @@ const SignUp = () => {
                                 id="password"
                                 type="password"
                                 placeholder="Password"
+                                value={password}
+                                onChange={handlePassword}
                             />
                         </div>
                         <div className="mb-2">
@@ -77,6 +123,7 @@ const SignUp = () => {
                         <button
                             className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="button"
+                            onClick={handleApi}
                         >
                             Sign In
                         </button>
