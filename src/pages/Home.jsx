@@ -1,9 +1,18 @@
 import React from 'react';
-
+import SignUp from '../components/SignUp';
 
 const Home = () => {
   return (
-    <div className='text-3xl'>Welcome to GrepIt. Change the Homse.jsx and start preparing components</div>
+    <>
+      <SignUp/>
+
+    </>
+
+
+
+
+
+
   );
 };
 
