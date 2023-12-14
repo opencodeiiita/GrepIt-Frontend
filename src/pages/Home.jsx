@@ -1,9 +1,11 @@
 import React from 'react';
-
+import Navbar from '../components/Navbar';
 
 const Home = () => {
   return (
-    <div className='text-3xl'>Welcome to GrepIt. Change the Homse.jsx and start preparing components</div>
+    <div className='bg-gray-300 h-screen'>
+      <Navbar></Navbar>
+    </div>
   );
 };
 
