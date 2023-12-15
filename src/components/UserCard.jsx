@@ -21,16 +21,21 @@ const UserCard = ({ profileName, profilePhoto }) => {
 
   return (
     <div className="fixed top-4 left-4 z-50">
-      <div className="relative flex items-center cursor-pointer p-4 rounded" onClick={toggleDropdown}>
-        <img src={profilePhoto} alt={profileName} className="w-8 h-8 rounded-full mr-2" />
+      <div
+        className={`object-cover relative flex items-center cursor-pointer p-4 rounded transition-all duration-300 ${
+          isDropdownOpen ? 'shadow-md' : ''
+        }`}
+        onClick={toggleDropdown}
+      >
+        <img src={profilePhoto} alt={profileName} className="w-10 h-10 rounded-full mr-3" />
         <span className="font-bold hidden md:inline">{profileName}</span>
 
         {isDropdownOpen && (
-          <div className="absolute top-10 left-0 bg-white border rounded mt-5 shadow z-10">
-            <button className="block px-4 py-2 w-full text-left" onClick={handleViewProfile}>
+          <div className="absolute top-12 left-0 bg-white border rounded mt-2 shadow-md z-10">
+            <button className="block px-4 py-2 w-full text-left hover:bg-gray-100" onClick={handleViewProfile}>
               View Profile
             </button>
-            <button className="block px-4 py-2 w-full text-left" onClick={handleLogout}>
+            <button className="block px-4 py-2 w-full text-left hover:bg-gray-100" onClick={handleLogout}>
               Logout
             </button>
           </div>
