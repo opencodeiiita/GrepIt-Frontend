@@ -5,12 +5,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Quiz from '../pages/Quiz';
 import CreateRoom from '../pages/CreateRoom';
+import SignUp from '../components/SignUp';
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" exact element={<Home/>} />
+        <Route path="/home" exact element={<Home/>} />
+        <Route path="/sign-up" exact element={<SignUp/>} />
         <Route path="/quiz" element={<Quiz/>} />
         <Route path="/createRoom" element={<CreateRoom/>} />
         <Route path="/home" exact element={<Home/>} />
