@@ -19,19 +19,15 @@ const Navbar = ({ bgColor, shadowColor }) => {
             placeholder="Search..."
             value={search}
             onChange={(e) => {
-              console.log("e.target.value:", e.target.value);
               setSearch(e.target.value);
             }}
-            onKeyDown={async (e) => {
-              if (e.key === 'Enter') {
-                const apiUrl = process.env.REACT_APP_API_URL;
-                try {
-                  const response = await axios.post(apiUrl + '/search', search);
-                  console.log('search:', search);
-                  console.log('success', response);
-                } catch (error) {
-                  console.log('error', error);
-                }
+            onPressEnter={async (e) => {
+              const apiUrl = process.env.REACT_APP_API_URL;
+              try {
+                console.log('search:', search);
+                const response = await axios.post(apiUrl + '/search', search);
+              } catch (error) {
+                console.log('error', error);
               }
             }}
             className="pr-3 pl-8 bg-gray-100 border-none ring-2 placeholder-gray-500 ring-gray-200 focus:ring-gray-400 focus:ring-2"
