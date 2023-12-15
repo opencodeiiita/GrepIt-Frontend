@@ -1,5 +1,3 @@
-// src/components/UserCard.jsx
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,7 +20,7 @@ const UserCard = ({ profileName, profilePhoto }) => {
   };
 
   return (
-    <div className="fixed top-4 left-4 z-50"> {/* Adjust top, left, and z-index as needed */}
+    <div className="fixed top-4 left-4 z-50">
       <div className="relative flex items-center cursor-pointer p-4 rounded" onClick={toggleDropdown}>
         <img src={profilePhoto} alt={profileName} className="w-8 h-8 rounded-full mr-2" />
         <span className="font-bold hidden md:inline">{profileName}</span>
