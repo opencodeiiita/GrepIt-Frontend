@@ -8,7 +8,7 @@ const Navbar = ({ bgColor, shadowColor }) => {
 
   return (
     <div
-      className={`${bgColor} p-3 w-3/4 float-right m-3 rounded-lg shadow-lg ${shadowColor}`}
+      className={`${bgColor} p-3 w-[80%] m-3 rounded-lg shadow-lg ${shadowColor}`}
     >
       <div className="flex justify-between">
         <div className="text-2xl mx-5 font-bold font-inter">GrepIt</div>
