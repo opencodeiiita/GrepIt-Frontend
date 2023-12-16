@@ -6,6 +6,7 @@ import Home from '../pages/Home';
 import Quiz from '../pages/Quiz';
 import CreateRoom from '../pages/CreateRoom';
 import SignUp from '../components/SignUp';
+import SignIn from '../components/SignIn';
 
 const AppRouter = () => {
   return (
@@ -13,6 +14,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/home" exact element={<Home/>} />
         <Route path="/sign-up" exact element={<SignUp/>} />
+        <Route path="/sign-in" exact element={<SignIn/>} />
         <Route path="/quiz" element={<Quiz/>} />
         <Route path="/createRoom" element={<CreateRoom/>} />
       </Routes>
