@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // All pages are just for demonstration purposes, pages must be heavily edited in order to make it work
 import Home from '../pages/Home';
 import Quiz from '../pages/Quiz';
-import CreateRoom from '../pages/CreateRoom';
 import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
 
@@ -16,7 +15,6 @@ const AppRouter = () => {
         <Route path="/sign-up" exact element={<SignUp/>} />
         <Route path="/sign-in" exact element={<SignIn/>} />
         <Route path="/quiz" element={<Quiz/>} />
-        <Route path="/createRoom" element={<CreateRoom/>} />
       </Routes>
     </Router>
   );
