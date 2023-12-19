@@ -5,6 +5,7 @@ import Loader from './components/Loader.jsx'
 
 function App() {
   return (
+      <Loader />
       <div className="App">
         <AppRouter />
       </div>
