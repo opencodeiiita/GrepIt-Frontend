@@ -1,28 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import './Loader.css'; 
+// Loader.js
 
-const Loader = () => {
-  const [isLoading, setIsLoading] = useState(true);
+import React, { useState, useEffect } from 'react';
+import './Loader.css';
+
+const Loader = ({ onLoaderComplete }) => {
+  const [animationIndex, setAnimationIndex] = useState(0);
 
   useEffect(() => {
-    // Simulate an asynchronous operation (e.g., fetching data, API call)
-    const fetchData = async () => {
-      // Assume the asynchronous operation takes 3 seconds
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      setIsLoading(false);
+    let intervalId;
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        clearInterval(intervalId);
+      } else {
+        intervalId = setInterval(() => {
+          setAnimationIndex((prevIndex) => (prevIndex + 1) % 6);
+        }, 200);
+      }
     };
 
-    fetchData();
-  }, []); // Empty dependency array ensures the effect runs only once
+    const clearScreen = () => {
+      setTimeout(() => {
+        clearInterval(intervalId);
+        onLoaderComplete(); 
+      }, 4000);
+    };
 
-  return (
-    <div className={`loader-container ${isLoading ? 'visible' : 'hidden'}`}>
-      <div className="loader"></div>
-      <br></br>
-      <div id="font1">
-      Loading...</div>
-    </div>
-  );
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    intervalId = setInterval(() => {
+      setAnimationIndex((prevIndex) => (prevIndex + 1) % 6);
+    }, 200);
+
+    clearScreen();
+
+    return () => {
+      clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [onLoaderComplete]);
+
+  const renderCircles = () => {
+    const circles = [];
+    for (let i = 0; i < 6; i++) {
+      circles.push(
+        <div
+          key={i}
+          className={`circle ${animationIndex === i ? 'active' : ''}`}
+        />
+      );
+    }
+    return circles;
+  };
+
+  return <div className="loader">{renderCircles()}</div>;
 };
 
 export default Loader;
