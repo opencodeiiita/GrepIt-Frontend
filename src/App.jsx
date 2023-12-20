@@ -1,12 +1,24 @@
 import React from 'react';
 import './assets/styles/App.css';
 import AppRouter from './routers/AppRouter.jsx';
+import Loader from './components/Loader.jsx'
+import { useState } from 'react';
 
 function App() {
+  const [loadingComplete, setLoadingComplete] = useState(false);
+
+  const handleLoaderComplete = () => {
+    setLoadingComplete(true);
+  };
   return (
-      <div className="App">
-        <AppRouter />
+    <> 
+    {!loadingComplete && (
+      <Loader onLoaderComplete={handleLoaderComplete} />
+    )}
+    <div className="App">
+    <AppRouter />
       </div>
+    </>
   );
 }
 
