@@ -1,7 +1,7 @@
 import React from 'react';
 import './assets/styles/App.css';
 import AppRouter from './routers/AppRouter.jsx';
-import Loader from './components/Loader.jsx'
+import Loader from './components/Loader.jsx';
 import { useState } from 'react';
 
 function App() {
@@ -11,13 +11,11 @@ function App() {
     setLoadingComplete(true);
   };
   return (
-    <> 
-    {!loadingComplete && (
-      <Loader onLoaderComplete={handleLoaderComplete} />
-    )}
-    <div className="App">
-    <AppRouter />
-      </div>
+    <>
+      {!loadingComplete && <Loader onLoaderComplete={handleLoaderComplete} />}
+      {loadingComplete && <div className="App">
+        <AppRouter />
+      </div>}
     </>
   );
 }
