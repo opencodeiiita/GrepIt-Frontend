@@ -18,7 +18,7 @@ const Option=({optionValue,optionLabel,placeholder, correctOption,onChangeHandle
 const QuizCard=({quizProp})=>
 {
   return (
-    <li className='px-4 py-3 border rounded-lg shadow-sm space-y-2 w-2/5'>
+    <li className='px-4 py-3 border rounded-lg shadow-sm space-y-2  w-1/2'>
       <header className='flex justify-between border-b-2 pb-1'>
         <h1>Question 1</h1>
         <section className='flex justify between'>
@@ -39,7 +39,7 @@ const QuizCard=({quizProp})=>
         <section className='grid grid-cols-2 justify-center items-center gap-y-2 gap-x-4 mt-2'>
           <aside className='flex justify-start items-center space-x-1'>
             <p className='w-4 h-4 bg-red-600 text-red-600 rounded-full'>  </p>
-            <p>Option 1</p>
+            <p className='text-sm max-w-xs text-left'>Option 1</p>
           </aside>
           <aside className='flex justify-start items-center space-x-1'>
             <p className='w-4 h-4 bg-red-600 text-red-600 rounded-full'> </p>
@@ -47,11 +47,11 @@ const QuizCard=({quizProp})=>
           </aside>
           <aside className='flex justify-start items-center space-x-1'>
             <p className='w-4 h-4 bg-red-600 text-red-600 rounded-full'> </p>
-            <p>Option 3</p>
+            <p className='text-sm max-w-xs text-left'>Option 3</p>
           </aside>
           <aside className='flex justify-start items-center space-x-1'>
             <p className='w-4 h-4 bg-red-600 text-red-600 rounded-full'> </p>
-            <p>Option 4</p>
+            <p className='text-sm max-w-xs text-left'>Option 4</p>
           </aside>
         </section>
       </main>
@@ -89,21 +89,23 @@ const Quiz = () => {
   const onChangeHandler=(isQuestion,text,optionNumber)=> isQuestion?setQuestion(text):setOptions(prev=>({...prev,[optionNumber]:text}))
 
   return (
-    <div className='w-screen h-screen flex justify-around items-start'>
-      <section className='w w-2/5 bg-gray-200/70 py-3 mt-1 px-2.5 rounded-xl flex flex-col justify-between h-[32%] shadow-sm shadow-gray-600'>
-        <textarea value={question} className='w-full h-2/5  text-center placeholder:text-black bg-white/80 rounded-lg resize-none pt-[5%]' placeholder='question goes here...' onChange={(e)=>onChangeHandler(true,e.target.value)}/>
-        <main className='grid grid-cols-2 justify-center items-center gap-y-2 gap-x-4 mx-2 '>
-          <Option optionValue={options[1]} optionLabel={"1"} placeholder={"1st Option"} correctOption={correctOption} onChangeHandler={onChangeHandler} changeCorrectOption={changeCorrectOption} />
-          <Option optionValue={options[2]} optionLabel={"2"} placeholder={"2nd Option"} correctOption={correctOption} onChangeHandler={onChangeHandler} changeCorrectOption={changeCorrectOption} />
-          <Option optionValue={options[3]} optionLabel={"3"} placeholder={"3rd Option"} correctOption={correctOption} onChangeHandler={onChangeHandler} changeCorrectOption={changeCorrectOption} />
-          <Option optionValue={options[4]} optionLabel={"4"} placeholder={"4th Option"} correctOption={correctOption} onChangeHandler={onChangeHandler} changeCorrectOption={changeCorrectOption} />
-        </main>
-        <aside className='flex mx-2'>
-          <span className='py-1 px-5 bg-white/80 rounded-sm  min-w-[30%]'>Correct Option: {correctOption!==""?correctOption:"-"}</span>
-          <button className='py-1 px-5 bg-white/80 ml-5 rounded-sm disabled:brightness-75 disabled:cursor-not-allowed' disabled={correctOption==="" || question===""} onClick={clickHandler}>Submit</button>
-        </aside>
-      </section>
-      <ul className=' grow flex flex-col justify-center items-center self-start'>
+    <div className='w-screen h-screen flex justify-around items-start overflow-x-hidden'>
+      <div className='w-1/2 h-full '>
+        <section className='w w-2/5 bg-gray-200/70 py-3 mt-1 px-2.5 rounded-xl flex flex-col justify-between h-[32%] shadow-sm shadow-gray-600 fixed top-1/3 left-10'>
+          <textarea value={question} className='w-full h-2/5  text-center placeholder:text-black bg-white/80 rounded-lg resize-none pt-[5%]' placeholder='question goes here...' onChange={(e)=>onChangeHandler(true,e.target.value)}/>
+          <main className='grid grid-cols-2 justify-center items-center gap-y-2 gap-x-4 mx-2 '>
+            <Option optionValue={options[1]} optionLabel={"1"} placeholder={"1st Option"} correctOption={correctOption} onChangeHandler={onChangeHandler} changeCorrectOption={changeCorrectOption} />
+            <Option optionValue={options[2]} optionLabel={"2"} placeholder={"2nd Option"} correctOption={correctOption} onChangeHandler={onChangeHandler} changeCorrectOption={changeCorrectOption} />
+            <Option optionValue={options[3]} optionLabel={"3"} placeholder={"3rd Option"} correctOption={correctOption} onChangeHandler={onChangeHandler} changeCorrectOption={changeCorrectOption} />
+            <Option optionValue={options[4]} optionLabel={"4"} placeholder={"4th Option"} correctOption={correctOption} onChangeHandler={onChangeHandler} changeCorrectOption={changeCorrectOption} />
+          </main>
+          <aside className='flex mx-2'>
+            <span className='py-1 px-5 bg-white/80 rounded-sm  min-w-[30%]'>Correct Option: {correctOption!==""?correctOption:"-"}</span>
+            <button className='py-1 px-5 bg-white/80 ml-5 rounded-sm disabled:brightness-75 disabled:cursor-not-allowed' disabled={correctOption==="" || question===""} onClick={clickHandler}>Submit</button>
+          </aside>
+        </section>
+      </div>
+      <ul className=' grow flex flex-col justify-center items-center self-start space-y-10 mt-10'>
         {questions.map(question=>(
           <QuizCard quizProp={question}/>
         ))}
