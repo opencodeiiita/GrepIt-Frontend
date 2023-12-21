@@ -34,25 +34,15 @@ const QuizCard=({quizProp})=>
       </header>
 
       <main className='flex flex-col'>
-        <h1 className='min-w-sm font-semibold'>What is capital of India?</h1>
+        <h1 className='min-w-sm font-semibold'>{quizProp?.question}</h1>
         <small className='text-gray-500 grow text-start '>answer choices</small>
         <section className='grid grid-cols-2 justify-center items-center gap-y-2 gap-x-4 mt-2'>
-          <aside className='flex justify-start items-center space-x-1'>
-            <p className='w-4 h-4 bg-red-600 text-red-600 rounded-full'>  </p>
-            <p className='text-sm max-w-xs text-left'>Option 1</p>
-          </aside>
-          <aside className='flex justify-start items-center space-x-1'>
-            <p className='w-4 h-4 bg-red-600 text-red-600 rounded-full'> </p>
-            <p className='text-sm max-w-xs text-left'>Option 1</p>
-          </aside>
-          <aside className='flex justify-start items-center space-x-1'>
-            <p className='w-4 h-4 bg-red-600 text-red-600 rounded-full'> </p>
-            <p className='text-sm max-w-xs text-left'>Option 3</p>
-          </aside>
-          <aside className='flex justify-start items-center space-x-1'>
-            <p className='w-4 h-4 bg-red-600 text-red-600 rounded-full'> </p>
-            <p className='text-sm max-w-xs text-left'>Option 4</p>
-          </aside>
+          {quizProp.options.map(option=>(
+              <aside className='flex justify-start items-center space-x-1'>
+              <p className={`w-4 h-4 ${option.isCorrect?"bg-green-500":"bg-red-600"} rounded-full`}> </p>
+              <p className='text-sm max-w-xs text-left'>{option?.option}</p>
+            </aside>
+          ))}
         </section>
       </main>
 
