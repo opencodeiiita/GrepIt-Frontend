@@ -155,7 +155,7 @@ const Quiz = () => {
   const onChangeHandler=(isQuestion,text,optionNumber)=> isQuestion?setQuestion(text):setOptions(prev=>({...prev,[optionNumber]:text}))
 
   return (
-    <div className='w-screen h-screen flex justify-around items-start overflow-x-hidden'>
+    <div className='w-screen h-screen flex justify-around items-start overflow-x-hidden bg-white'>
       <div className='w-1/2 h-full '>
         <section className='w w-2/5 bg-gray-200/70 py-3 mt-1 px-2.5 rounded-xl flex flex-col justify-between h-[32%] shadow-sm shadow-gray-600 fixed top-1/3 left-10'>
           <textarea value={question} className='w-full h-2/5  text-center placeholder:text-black bg-white/80 rounded-lg resize-none pt-[5%]' placeholder='question goes here...' onChange={(e)=>onChangeHandler(true,e.target.value)}/>
