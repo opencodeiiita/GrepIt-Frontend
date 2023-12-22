@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './assets/styles/App.css';
-import AppRouter from './routers/AppRouter.jsx';
-import Loader from './components/Loader.jsx'
-import { useState } from 'react';
+import Loader from './components/Loader.jsx';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SignUp from './components/SignUp.js';
 
 function App() {
   const [loadingComplete, setLoadingComplete] = useState(false);
@@ -10,13 +10,16 @@ function App() {
   const handleLoaderComplete = () => {
     setLoadingComplete(true);
   };
+
   return (
-    <> 
-    {!loadingComplete && (
-      <Loader onLoaderComplete={handleLoaderComplete} />
-    )}
-    <div className="App">
-    <AppRouter />
+    <>
+      {!loadingComplete && <Loader onLoaderComplete={handleLoaderComplete} />}
+      <div className="App">
+        <Router>
+          <Routes>
+            <Route path="/" element={<SignUp />} />
+          </Routes>
+        </Router>
       </div>
     </>
   );
