@@ -18,28 +18,26 @@ const SignUp = () => {
     const handlePassword = (e) => {
         setPassword(e.target.value)
     }
-    const formData = new FormData();
-    
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('password', password);
 
-    const handleApi =  async ( event ) => {
+    const handleApi = async (event) => {
         event.preventDefault();
+        const userData = {
+            username: name,
+            email: email,
+            password: password
+        };
         const apiUrl = process.env.REACT_APP_API_URL;
-        try{
-            const response = await axios.post(apiUrl+'/auth/register',formData);
-            console.log('success',response)
-        } catch (error ){
-            console.log('failed',error)
+        try {
+            const response = await axios.post(apiUrl + '/api/v1/auth/register', userData);
+            console.log('success', response.data.message)
+            console.log('user', response.data.user)
+        } catch (error) {
+            console.log('failed', error)
         }
     }
 
+
     return (
-
-
-
-
 
         <div className='h-full w-full flex flex-row'>
             <img
@@ -120,13 +118,16 @@ const SignUp = () => {
                                 placeholder="Confirm Password"
                             />
                         </div>
-                        <button
-                            className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="button"
-                            onClick={handleApi}
-                        >
-                            Sign In
-                        </button>
+                        <form className="flex flex-col gap-5 w-full mt-4" onSubmit={handleApi}>
+                            ...
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                type="submit"
+                            >
+                                Sign Up
+                            </button>
+                        </form>
+
                     </form>
                 </div>
             </section>
