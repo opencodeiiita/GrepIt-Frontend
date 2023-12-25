@@ -18,24 +18,31 @@ const JoinRoom = () => {
  };
 
  const handleFormSubmit = async () => {
-   try {
-     const apiUrl = process.env.REACT_APP_API_URL;
-     const response = await axios.post(apiUrl+"/joinRoom", formData);
+  if (!formData.roomCode) {
+    // Show error message
+    console.error("Invalid room code.");
+    return;
+  }
+ 
+  try {
+    const apiUrl = process.env.REACT_APP_API_URL;
+    const response = await axios.post(apiUrl + "/joinRoom", formData);
+ 
+    if (response) {
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 2000);
+      console.log("Joined room successfully.");
+      navigate('/quizRoom');
+    } else {
 
-     if (response) {
-       setShowSuccess(true);
-       setTimeout(() => {
-         setShowSuccess(false);
-       }, 2000);
-       console.log("Joined room successfully.");
-       navigate('/quizRoom'); // Navigate to QuizRoom component
-     } else {
-       // Handle failure case
-     }
-   } catch (error) {
-     console.error("Error joining room:", error);
-   }
+    }
+  } catch (error) {
+    console.error("Error joining room:", error);
+  }
  };
+ 
 
  return (
    <div className="mx-8 max-w-md bg-white p-8 rounded-md shadow-md mb-8 lg:mx-auto">
@@ -50,7 +57,7 @@ const JoinRoom = () => {
          onChange={handleChange}
        />
      </div>
-     <button onClick={() => {navigate('quizRoom.jsx')}} className="bg-blue-500 text-white py-2 px-4 rounded-md w-full block">
+     <button onClick={() => {handleFormSubmit()}} className="bg-blue-500 text-white py-2 px-4 rounded-md w-full block">
        Join Room
      </button>
      {showSuccess && (
