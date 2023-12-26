@@ -3,6 +3,7 @@ import './assets/styles/App.css';
 import Loader from './components/Loader.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from './components/SignUp.js';
+import SignIn from './components/SignIn.js';
 
 function App() {
   const [loadingComplete, setLoadingComplete] = useState(false);
@@ -17,7 +18,7 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
-            <Route path="/" element={<SignUp />} />
+            <Route path="/" element={<SignIn />} />
           </Routes>
         </Router>
       </div>
