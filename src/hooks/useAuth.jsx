@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from 'react';
+import React, { useContext, createContext , useState } from 'react';
 
 const AuthContext = createContext();
 
@@ -11,15 +11,14 @@ const useAuth = () => {
    };
 
    const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = React.useState(() => {
+    const [isAuthenticated, setIsAuthenticated] = useState(() => {
       // Check if the token exists in localStorage
-      const token = localStorage.getItem('token');
-      return token ? true : false;
+      return localStorage.getItem('token')?.startsWith('Bearer ') || false;
     });
    
     // This function will be used to update the authentication status
     const login = (token) => {
-      localStorage.setItem('token', token);
+      localStorage.setItem('token', `Bearer ${token}`);
       setIsAuthenticated(true);
     };
    

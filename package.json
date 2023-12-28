@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.1.6",
     "@testing-library/jest-dom": "^5.17.0",
