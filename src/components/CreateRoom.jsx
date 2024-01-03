@@ -1,88 +1,84 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Input, DatePicker, Button, Form, notification } from 'antd';
+import { Textarea } from '@material-tailwind/react';
 
 const CreateRoom = () => {
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
-  const [formData, setFormData] = useState({
-    roomNo: '',
-    schedule: '',
-    numOfQuestions: '',
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleFormSubmit = async () => {
+  const handleFormSubmit = async (values) => {
     try {
-      // Make sure to replace 'REACT_APP_API_URL' with your actual API endpoint
       const apiUrl = process.env.REACT_APP_API_URL;
-
-      // Making the POST request
-    //   const response = await axios.post(apiUrl+"/scheduleTime/:time", formData);
-
-    //   if (response) {
-    //     setShowSuccess(true);
-    //     setTimeout(() => {
-    //     setShowSuccess(false);
-    //     }, 2000);
-    //     console.log("Scheduling success. Show side pop-up.");
-    //   } else {
-    //     // Redirect to the backend response URL for starting the quiz
-    //   }
       setShowSuccess(true);
-        setTimeout(() => {
+      setTimeout(() => {
         setShowSuccess(false);
-        }, 2000);
-
+      }, 2000);
+      console.log('Scheduling success. Show side pop-up.');
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error('Error submitting form:', error);
     }
   };
 
   return (
     <div className="mx-8 max-w-md bg-white p-8 rounded-md shadow-md mb-8 lg:mx-auto">
       <h2 className="text-2xl font-semibold mb-5">Create Room</h2>
-      <div className="mb-5">
-        <label className="block text-sm font-medium text-gray-600 text-left">Room No</label>
-        <input
+      <Form
+        onFinish={handleFormSubmit}
+        className="flex flex-col w-full mt-4"
+        layout="vertical"
+      >
+        <Form.Item
+          label="Room No"
           name="roomNo"
-          placeholder="Enter Room No"
-          type="text"
-          className="mt-1 p-2 w-full border rounded-md"
-          onChange={handleChange}
-        />
-      </div>
-      <div className="mb-5">
-        <label className="block text-sm font-medium text-gray-600 text-left">Schedule Quiz</label>
-        <input
+          rules={[{ required: true, message: 'Please enter Room No' }]}
+        >
+          <Input
+            placeholder="Enter Room No"
+            className="mt-1 p-2 bg-white rounded-md text-[16px] w-full"
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="Schedule Quiz"
           name="schedule"
-          type="datetime-local"
-          className="mt-1 p-2 w-full border rounded-md"
-          onChange={handleChange}
-        />
-      </div>
-      <div className="mb-5">
-        <label className="block text-sm font-medium text-gray-600 text-left">No of questions</label>
-        <input
+          rules={[{ required: true, message: 'Please select a schedule' }]}
+        >
+          <DatePicker
+            showTime
+            className="mt-1 bg-white rounded-md text-[16px] w-full"
+            size="large"
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="No of questions"
           name="numOfQuestions"
-          type="number"
-          className="mt-1 p-2 w-full border rounded-md"
-          onChange={handleChange}
-        />
-      </div>
-      <button onClick={() => {navigate('../quiz')}} className="bg-blue-500 text-white py-2 px-4 rounded-md mb-5 w-full block">
-        Start Quiz
-      </button>
-      <button onClick={() => {handleFormSubmit()}} className="bg-green-500 text-white py-2 px-4 rounded-md w-full block">
-        Schedule Later
-      </button>
+          rules={[{ required: true, message: 'Please enter the number of questions' }]}
+        >
+          <Input
+            type="number"
+            className="mt-1 p-2 bg-white text-[16px] rounded-md w-full"
+          />
+        </Form.Item>
+
+        <Button
+          onClick={() => navigate('../quiz')}
+          type="primary"
+          className="w-full h-fit text-[16px] mb-5 px-4 py-2 rounded-md"
+        >
+          Start Quiz
+        </Button>
+
+        <Button
+          htmlType="submit"
+          type="default"
+          className="w-full h-fit text-[16px] px-4 py-2 border-black rounded-md"
+        >
+          Schedule Later
+        </Button>
+      </Form>
+
       {showSuccess && (
         <div className="bg-green-500 text-white py-2 px-4 rounded-md fixed bottom-8 right-8">
           Success! Link generated.

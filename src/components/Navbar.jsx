@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input } from 'antd';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import axios from 'axios';
+import Search from 'antd/es/input/Search';
 
 const Navbar = ({ bgColor, shadowColor }) => {
   const [search, setSearch] = useState('');
@@ -10,14 +11,15 @@ const Navbar = ({ bgColor, shadowColor }) => {
     <div
       className={`${bgColor} p-3 w-[80%] m-3 rounded-lg shadow-lg ${shadowColor}`}
     >
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between">
         <div className="text-2xl mx-5 font-bold font-inter">GrepIt</div>
 
         <div className="flex w-3/5 md:w-2/5 lg:w-1/3 relative items-center text-gray-400 focus-within:text-gray-600">
-          <MagnifyingGlassIcon className="w-4 h-4 absolute z-10 ml-2 pointer-events-none" />
-          <Input
-            placeholder="Search..."
+
+
+          <Search placeholder="Search..."
             value={search}
+            size="large"
             onChange={(e) => {
               setSearch(e.target.value);
             }}
@@ -29,9 +31,10 @@ const Navbar = ({ bgColor, shadowColor }) => {
               } catch (error) {
                 console.log('error', error);
               }
-            }}
-            className="pr-3 pl-8 bg-gray-100 border-none ring-2 placeholder-gray-500 ring-gray-200 focus:ring-gray-400 focus:ring-2"
-          />
+            }} enterButton
+            
+            style={{ borderRadius: '20px' }}
+            />
         </div>
       </div>
     </div>
