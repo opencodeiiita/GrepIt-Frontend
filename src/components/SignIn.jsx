@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Button, Form, Input } from 'antd/es';
+import FormItem from 'antd/es/form/FormItem';
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -41,54 +43,55 @@ const SignIn = () => {
       />
       <section className="flex flex-1 justify-center items-center flex-col py-10">
         <div className="w-[340px] flex flex-col ">
-          <form
-            className="flex flex-col gap-5 w-full mt-4"
+          <Form
+            className="flex flex-col  w-full mt-4"
             type="submit"
+            layout="vertical"
+            labelAlign="left"
             onSubmit={handleApi}
+            requiredMark={false}
           >
             <h2 className="text-3xl font-bold mb-8">Sign In</h2>
-            <p className="text-light-3 small-medium md:base-regular mt-2">
+            <p className="text-light-3 small-medium md:base-regular mb-2">
               To access the website , please enter your details
             </p>
 
-            <div className="mb-2">
-              <label
-                className="block text-start text-gray-700 text-sm font-bold mb-2"
-                htmlFor="username"
-              >
-                Username
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
-                type="username"
+            <FormItem
+              label={<strong>Username</strong>}
+              name="username"
+              rules={[{ required: true, message: 'Please enter your username' }]}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <Input
                 placeholder="Username"
                 value={username}
+                size="large"
                 onChange={handleUsername}
               />
-            </div>
+            </FormItem>
 
-            <div className="mb-2">
-              <label
-                className="block text-start text-gray-700 text-sm font-bold mb-2"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            <FormItem
+              label={<strong>Password</strong>}
+              name="password"
+              rules={[{ required: true, message: 'Please enter your password' }]}
+              labelCol={{ span: 24 }}
+              wrapperCol={{ span: 24 }}
+            >
+              <Input
                 id="password"
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={handlePassword}
+                size="large"
               />
-            </div>
+            </FormItem>
 
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <Button type="primary" size="large">
               Sign In
-            </button>
-          </form>
+            </Button>
+          </Form>
         </div>
       </section>
     </div>

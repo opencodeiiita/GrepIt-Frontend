@@ -11,6 +11,7 @@ const Option = ({
   changeCorrectOption
 }) => {
   return (
+    
     <aside className="relative">
       <span
         className={` absolute p-1 ${
@@ -137,7 +138,7 @@ const QuizCard = ({ quizProp, questionNumber, setQuestions }) => {
     setQuestions((prev) =>
       [...prev].filter((question, index) => index !== questionNumber - 1)
     );
-  };
+  };                                              
   if (edit)
     return (
       <EditQuizCard
@@ -246,7 +247,7 @@ const Quiz = () => {
       <div className="w-1/2 h-full ">
         <section className="w w-2/5 bg-gray-200/70 py-3 mt-1 px-2.5 rounded-xl flex flex-col justify-between h-[32%] shadow-sm shadow-gray-600 fixed top-1/3 left-10">
           <textarea
-            value={question}
+            value={question}  
             className="w-full h-2/5  text-center placeholder:text-black bg-white/80 rounded-lg resize-none pt-[5%]"
             placeholder="question goes here..."
             onChange={(e) => onChangeHandler(true, e.target.value)}
