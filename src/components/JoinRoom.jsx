@@ -1,73 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { Button, Input } from 'antd';
+// import axios from 'axios';
+import { App, Button, Card, Form, Input, Typography } from 'antd';
 
 const JoinRoom = () => {
- const navigate = useNavigate();
- const [showSuccess, setShowSuccess] = useState(false);
- const [formData, setFormData] = useState({
-   roomCode: '',
- });
+  const navigate = useNavigate();
+  const { notification } = App.useApp();
+  const handleFormSubmit = async (values) => {
+    try {
+      // const apiUrl = process.env.REACT_APP_API_URL;
 
- const handleChange = (e) => {
-   const { name, value } = e.target;
-   setFormData(prevData => ({
-     ...prevData,
-     [name]: value,
-   }));
- };
-
- const handleFormSubmit = async () => {
-  if (!formData.roomCode) {
-    // Show error message
-    console.error("Invalid room code.");
-    return;
-  }
- 
-  try {
-    const apiUrl = process.env.REACT_APP_API_URL;
-    const response = await axios.post(apiUrl + "/joinRoom", formData);
- 
-    if (response) {
-      setShowSuccess(true);
-      setTimeout(() => {
-        setShowSuccess(false);
-      }, 2000);
-      console.log("Joined room successfully.");
-      navigate('/quizRoom');
-    } else {
-
+      notification.success({
+        message: 'Navigating to Quiz',
+        description: ``,
+        duration: 2,
+        placement: 'bottomRight'
+      });
+      setTimeout(() => navigate('/quiz'), 1000);
+    } catch (error) {
+      notification.error({
+        message: 'Error Joining Room',
+        duration: 2,
+        placement: 'bottomRight'
+      });
     }
-  } catch (error) {
-    console.error("Error joining room:", error);
-  }
- };
- 
+  };
 
- return (
-   <div className="mx-8 max-w-md bg-white p-8 rounded-md shadow-md mb-8 lg:mx-auto">
-     <h2 className="text-2xl font-semibold mb-5">Join Room</h2>
-     <div className="mb-5">
-       <label className="block text-sm font-medium  text-gray-600 text-left">Room Code</label>
-       <Input
-         name="roomCode"
-         placeholder="Enter Room Code"
-         type="text"
-         className="mt-1 p-2 w-full text-[16px] border rounded-md bg-white"
-         onChange={handleChange}
-       />
-     </div>
-     <Button type="primary" onClick={() => {handleFormSubmit()}} className="h-fit text-[16px] text-white py-2 px-4 rounded-md w-full block">
-       Join Room
-     </Button>
-     {showSuccess && (
-       <div className="bg-green-500 text-white py-2 px-4 rounded-md fixed bottom-8 right-8">
-         Successfully joined the room.
-       </div>
-     )}
-   </div>
- );
+  return (
+    <Card>
+      <Typography.Title level={2}>Join Room</Typography.Title>
+      <Form
+        onFinish={handleFormSubmit}
+        className="flex flex-col"
+        layout="vertical"
+        size="large"
+      >
+        <Form.Item
+          label="Room Code"
+          name="roomCode"
+          rules={[
+            { required: true, message: 'Please enter Room code to join' }
+          ]}
+        >
+          <Input placeholder="Enter Room Code" />
+        </Form.Item>
+        <Button type="primary" htmlType="submit">
+          Join Room
+        </Button>
+      </Form>
+    </Card>
+  );
 };
 
 export default JoinRoom;

@@ -1,24 +1,17 @@
 import React from 'react';
 import AppRouter from './routers/AppRouter.jsx';
 import { AuthProvider } from './hooks/useAuth.jsx';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, App as AppFeedBackProvider } from 'antd';
+import theme from './utils/theme.ts';
 
 function App() {
   return (
-    <ConfigProvider
-    theme={{
-      token: {
-        
-        fontFamily:'Arial,Sans Serif',
-
-        // Alias Token
-        colorBgContainer: '#ffffff',
-      },
-    }}
-  >
-    <AuthProvider>
-      <AppRouter/>
-    </AuthProvider>
+    <ConfigProvider theme={theme}>
+      <AuthProvider>
+        <AppFeedBackProvider>
+          <AppRouter />
+        </AppFeedBackProvider>
+      </AuthProvider>
     </ConfigProvider>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form, Input } from 'antd/es';
-import FormItem from 'antd/es/form/FormItem';
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -56,10 +55,12 @@ const SignIn = () => {
               To access the website , please enter your details
             </p>
 
-            <FormItem
+            <Form.Item
               label={<strong>Username</strong>}
               name="username"
-              rules={[{ required: true, message: 'Please enter your username' }]}
+              rules={[
+                { required: true, message: 'Please enter your username' }
+              ]}
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
             >
@@ -69,12 +70,14 @@ const SignIn = () => {
                 size="large"
                 onChange={handleUsername}
               />
-            </FormItem>
+            </Form.Item>
 
-            <FormItem
+            <Form.Item
               label={<strong>Password</strong>}
               name="password"
-              rules={[{ required: true, message: 'Please enter your password' }]}
+              rules={[
+                { required: true, message: 'Please enter your password' }
+              ]}
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
             >
@@ -86,7 +89,7 @@ const SignIn = () => {
                 onChange={handlePassword}
                 size="large"
               />
-            </FormItem>
+            </Form.Item>
 
             <Button type="primary" size="large">
               Sign In

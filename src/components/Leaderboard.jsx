@@ -1,53 +1,78 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'antd';
-import './Leaderboard.css';
+import { Card, Divider, Skeleton, Table, Typography } from 'antd';
+import axios from 'axios';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const Leaderboard = () => {
-    const [leaderboardData, setLeaderboardData] = useState([]);
-  
-    useEffect(() => {
-      fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(data => {
-          const transformedData = data.map((user, index) => ({
-            position: index + 1,
-            name: user.name,
-            uid: user.id,
-            quizPoints: Math.floor((12-index)*100+(10*(12-index)+((12-index+1)*5)-index)), 
-          }));
-          setLeaderboardData(transformedData);
-        })
-        .catch(error => console.error('Error fetching data:', error));
-    }, []);
+  const [leaderboardData, setLeaderboardData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const loadData = async () => {
+    if (loading) return;
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        'https://randomuser.me/api/?results=10&inc=name,location'
+      );
+      if (response.status === 200) {
+        const transformedData = response.data.results.map((user, index) => ({
+          position: index + 1,
+          name: `${user.name.title} ${user.name.first} ${user.name.last}`,
+          quizPoints: user.location.street.number
+        }));
+        setLeaderboardData([...leaderboardData, ...transformedData]);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   const columns = [
     {
       title: 'Position',
       dataIndex: 'position',
       key: 'position',
-    },
-    {
-      title: 'UID',
-      dataIndex: 'uid',
-      key: 'uid',
+      render: (text, record, index) => {
+        if (index === 0) return '🥇';
+        else if (index === 1) return '🥈';
+        else if (index === 2) return '🥉';
+        else return text;
+      }
     },
     {
       title: 'Name',
       dataIndex: 'name',
-      key: 'name',
+      key: 'name'
     },
     {
       title: 'Quiz Points',
       dataIndex: 'quizPoints',
-      key: 'quizPoints',
-    },
+      key: 'quizPoints'
+    }
   ];
 
   return (
-    <div className="leaderboard-container">
-      <h1 className="leaderboard-title">Leaderboard</h1>
-      <Table  dataSource={leaderboardData} columns={columns} pagination={false} />
-    </div>
+    <Card title={<Typography.Text>Leaderboard</Typography.Text>}  size='small'>
+      <InfiniteScroll
+        dataLength={leaderboardData.length}
+        next={loadData}
+        hasMore={false}
+        endMessage={<Divider plain>End of the Leaderboard</Divider>}
+        loader={<Skeleton paragraph={{ rows: 1 }} active />}
+      >
+        <Table
+          dataSource={leaderboardData}
+          columns={columns}
+          pagination={false}
+        />
+      </InfiniteScroll>
+    </Card>
   );
 };
 

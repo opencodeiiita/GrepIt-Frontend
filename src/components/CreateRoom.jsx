@@ -1,90 +1,86 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Input, DatePicker, Button, Form, notification } from 'antd';
-import { Textarea } from '@material-tailwind/react';
+import {
+  Input,
+  InputNumber,
+  DatePicker,
+  Button,
+  Form,
+  Typography,
+  App,
+  Divider,
+  Card
+} from 'antd';
+import Compact from 'antd/es/space/Compact';
 
 const CreateRoom = () => {
   const navigate = useNavigate();
-  const [showSuccess, setShowSuccess] = useState(false);
-
+  const { notification } = App.useApp();
   const handleFormSubmit = async (values) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      setShowSuccess(true);
-      setTimeout(() => {
-        setShowSuccess(false);
-      }, 2000);
-      console.log('Scheduling success. Show side pop-up.');
+      // const apiUrl = process.env.REACT_APP_API_URL;
+
+      notification.success({
+        message: 'Quiz created',
+        description: `Your room code is: \${}`,
+        duration: 2,
+        placement: 'bottomRight'
+      });
+      setTimeout(() => navigate('/quiz'), 2000);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      notification.error({
+        message: 'Error Submitting Form',
+        duration: 2,
+        placement: 'bottomRight'
+      });
     }
   };
 
   return (
-    <div className="mx-8 max-w-md bg-white p-8 rounded-md shadow-md mb-8 lg:mx-auto">
-      <h2 className="text-2xl font-semibold mb-5">Create Room</h2>
+    <Card>
+      <Typography.Title level={2}>Create Room</Typography.Title>
       <Form
         onFinish={handleFormSubmit}
-        className="flex flex-col w-full mt-4"
+        className="flex flex-col"
         layout="vertical"
+        size="large"
       >
         <Form.Item
           label="Room No"
           name="roomNo"
           rules={[{ required: true, message: 'Please enter Room No' }]}
         >
-          <Input
-            placeholder="Enter Room No"
-            className="mt-1 p-2 bg-white rounded-md text-[16px] w-full"
-          />
+          <Input placeholder="Enter Room No" />
         </Form.Item>
 
-        <Form.Item
-          label="Schedule Quiz"
-          name="schedule"
-          rules={[{ required: true, message: 'Please select a schedule' }]}
-        >
-          <DatePicker
-            showTime
-            className="mt-1 bg-white rounded-md text-[16px] w-full"
-            size="large"
-          />
-        </Form.Item>
+        <Compact>
+          <Form.Item label="Schedule Quiz" name="schedule">
+            <DatePicker showTime format="d-MMM h a" />
+          </Form.Item>
 
-        <Form.Item
-          label="No of questions"
-          name="numOfQuestions"
-          rules={[{ required: true, message: 'Please enter the number of questions' }]}
-        >
-          <Input
-            type="number"
-            className="mt-1 p-2 bg-white text-[16px] rounded-md w-full"
-          />
-        </Form.Item>
+          <Form.Item
+            label="No of questions"
+            name="numOfQuestions"
+            rules={[
+              {
+                required: true,
+                message: 'Required'
+              }
+            ]}
+          >
+            <InputNumber />
+          </Form.Item>
+        </Compact>
 
-        <Button
-          onClick={() => navigate('../quiz')}
-          type="primary"
-          className="w-full h-fit text-[16px] mb-5 px-4 py-2 rounded-md"
-        >
+        <Button type="primary" size="large" htmlType="submit">
           Start Quiz
         </Button>
-
-        <Button
-          htmlType="submit"
-          type="default"
-          className="w-full h-fit text-[16px] px-4 py-2 border-black rounded-md"
-        >
+        <Divider />
+        <Button htmlType="submit" type="default">
           Schedule Later
         </Button>
       </Form>
-
-      {showSuccess && (
-        <div className="bg-green-500 text-white py-2 px-4 rounded-md fixed bottom-8 right-8">
-          Success! Link generated.
-        </div>
-      )}
-    </div>
+    </Card>
   );
 };
 
