@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import LeaderBoard from '../components/Leaderboard.jsx';
 import Leaderboard from '../components/Leaderboard.jsx';
 
 const Option = ({
