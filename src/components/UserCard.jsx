@@ -22,7 +22,7 @@ const UserCard = ({ profileName, profilePhoto, bgColor, shadowColor }) => {
       key: 1,
       icon: <ProfileOutlined />,
       label: 'View Profile',
-      onClick: navigate('/profile')
+      /*  onClick: navigate('/profile') ,   definetly the navigate('/profile') is giving some issue , making it automatically redirect to /profile infinitely*/ 
     },
     {
       key: 2,
