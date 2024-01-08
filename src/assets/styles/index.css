@@ -8,3 +8,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+@media (max-width: 768px) {
+  .flex.items-start.justify-center {
+      flex-direction: column;
+      align-items: center;
+  }
+}
