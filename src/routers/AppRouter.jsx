@@ -7,6 +7,7 @@ import Quiz from '../pages/Quiz';
 import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
 import Profile from '../pages/Profile';
+import QuizRoom from '../pages/QuizRoom';
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
         <Route path="/sign-up" exact element={<SignUp/>} />
         <Route path="/sign-in" exact element={<SignIn/>} />
         <Route path="/quiz" element={<Quiz/>} />
+        <Route path="/quizRoom" element={<QuizRoom/>} />
       </Routes>
     </Router>
   );
