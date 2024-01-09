@@ -6,6 +6,7 @@ import Home from '../pages/Home';
 import Quiz from '../pages/Quiz';
 import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
+import Profile from '../pages/Profile';
 import QuizRoom from '../pages/QuizRoom';
 
 const AppRouter = () => {
@@ -13,6 +14,7 @@ const AppRouter = () => {
     <Router>
       <Routes>
         <Route path="/" exact element={<Home/>} />
+        <Route path="/profile" exact element={<Profile/>} />
         <Route path="/sign-up" exact element={<SignUp/>} />
         <Route path="/sign-in" exact element={<SignIn/>} />
         <Route path="/quiz" element={<Quiz/>} />
