@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // import axios from 'axios';
-import { App, Button, Card, Form, Input, Typography } from 'antd';
+import { App, Button, Card, Form, Input, Typography, Image} from 'antd';
 
 const JoinRoom = () => {
   const navigate = useNavigate();
@@ -27,8 +27,15 @@ const JoinRoom = () => {
   };
 
   return (
-    <Card>
-      <Typography.Title level={2}>Join Room</Typography.Title>
+    <Card className='card-grad w-full min-h-[60vh]'>
+      <Image 
+        width={200}
+        height={160}
+        preview={false}
+        src='https://img.graphicsurf.com/2020/10/business-people-meeting-vector-flat-design1.jpg'
+        className='mx-auto w-full'
+        />
+      <Typography.Title level={2} style={{color:"white"}} className='mt-4 text-white'>Join Room</Typography.Title>
       <Form
         onFinish={handleFormSubmit}
         className="flex flex-col"
@@ -41,10 +48,11 @@ const JoinRoom = () => {
           rules={[
             { required: true, message: 'Please enter Room code to join' }
           ]}
+          className='mt-[-10px]'
         >
-          <Input placeholder="Enter Room Code" />
+          <Input placeholder="Enter Room Code" className='mt-[-20px] bg-white/20 focus:bg-white/50 border-none'/>
         </Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="default" htmlType="submit" className='bg-[#42c072]  mt-2'>
           Join Room
         </Button>
       </Form>

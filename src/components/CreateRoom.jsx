@@ -8,9 +8,7 @@ import {
   Form,
   Typography,
   App,
-  Divider,
-  Card
-} from 'antd';
+  Card} from 'antd';
 import Compact from 'antd/es/space/Compact';
 
 const CreateRoom = () => {
@@ -37,8 +35,8 @@ const CreateRoom = () => {
   };
 
   return (
-    <Card>
-      <Typography.Title level={2}>Create Room</Typography.Title>
+    <Card className='card-grad min-h-[60vh]'>
+      <Typography.Title level={2} style={{color:"white"}}>Create Room</Typography.Title>
       <Form
         onFinish={handleFormSubmit}
         className="flex flex-col"
@@ -49,13 +47,15 @@ const CreateRoom = () => {
           label="Room No"
           name="roomNo"
           rules={[{ required: true, message: 'Please enter Room No' }]}
+          className='relative top-4'
+          labelCol={{style : { width:"20%",}}}
         >
-          <Input placeholder="Enter Room No" />
+        <Input placeholder="Enter Room No" className='mt-[-10px] bg-white/20 focus:bg-white/50 border-none'/>
         </Form.Item>
 
-        <Compact>
-          <Form.Item label="Schedule Quiz" name="schedule">
-            <DatePicker showTime format="d-MMM h a" />
+        <Compact className='w-full mt-4 relative bottom-4 gap-1'>
+          <Form.Item label="Schedule Quiz" name="schedule" className='w-[40%]'>
+            <DatePicker showTime format="d-MMMM, h:00-A" className='w-full mt-[-10px] bg-white/20 focus:bg-white/50 border-none'/>
           </Form.Item>
 
           <Form.Item
@@ -67,16 +67,16 @@ const CreateRoom = () => {
                 message: 'Required'
               }
             ]}
+            className='w-[20%] '
           >
-            <InputNumber />
+          <InputNumber className='mt-[-10px] w-full text-center bg-white/20 focus:bg-white/50 border-none ' placeholder='no. of que'/>
           </Form.Item>
         </Compact>
 
-        <Button type="primary" size="large" htmlType="submit">
+        <Button type="default" size="large" htmlType="submit" className='mb-4 bg-[#42c072] '>
           Start Quiz
         </Button>
-        <Divider />
-        <Button htmlType="submit" type="default">
+        <Button htmlType="submit" type="default" className=' bg-[#42c072] '>
           Schedule Later
         </Button>
       </Form>

@@ -42,11 +42,11 @@ const UserCard = ({ profileName, profilePhoto, bgColor, shadowColor }) => {
         </Flex>
       ) : (
         <Button
-          shape="round"
-          type="text"
+          type="primary"
           icon={<UserOutlined />}
           size="large"
           href="/sign-in"
+          className='bg-white hover:text-white'
         >
           Sign-in
         </Button>

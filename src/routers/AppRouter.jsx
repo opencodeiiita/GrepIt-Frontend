@@ -17,8 +17,8 @@ const AppRouter = () => {
         <Route path="/profile" exact element={<Profile/>} />
         <Route path="/sign-up" exact element={<SignUp/>} />
         <Route path="/sign-in" exact element={<SignIn/>} />
-        <Route path="/quiz" element={<Quiz/>} />
-        <Route path="/quizRoom" element={<QuizRoom/>} />
+        <Route path="/quiz" element={<QuizRoom/>} />
+        <Route path="/addQuestion" element={<Quiz/>} />
       </Routes>
     </Router>
   );

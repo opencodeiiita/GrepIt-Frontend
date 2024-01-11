@@ -1,6 +1,5 @@
 import React from 'react';
 import { ReactComponent as LogoImg } from '../assets/images/logo.svg';
-import { Typography } from 'antd';
 import Search from 'antd/es/input/Search';
 import axios from 'axios';
 import { SearchOutlined } from '@ant-design/icons';
@@ -21,23 +20,23 @@ const NavBar = () => {
   };
 
   return (
-    <>
+
+    <div className='flex w-full justify-between items-center'>
       <span className="flex flex-row items-center justify-between">
         <LogoImg height={'72px'} width={'72px'} />
-        <Typography.Title level={3} className="font-inter">
-          GrepIt
-        </Typography.Title>
+        <h1 className='text-white text-2xl font-semibold'>GrepIt</h1>
       </span>
-      <Search
-        className="flex lg:w-1/3 md:w-2/5 w-3/5 relative"
-        placeholder="Search..."
-        size="large"
-        onPressEnter={searchUser}
-        enterButton
-        prefix={<SearchOutlined />}
-      />
-      <UserCard />
-    </>
+      <div className='flex w-[40%] items-center justify-end gap-4'>
+        <Search
+          className="flex lg:w-3/4 md:w-3/5 w-2/5 relative bg-slate-200 rounded-md"
+          placeholder="Search..."
+          size="large"
+          onPressEnter={searchUser}
+          prefix={<SearchOutlined />}
+        />
+        <UserCard />
+      </div>
+    </div>
   );
 };
 

@@ -9,9 +9,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-@media (max-width: 768px) {
-  .flex.items-start.justify-center {
-      flex-direction: column;
-      align-items: center;
-  }
+body, .main-grad {
+  @apply bg-[#02021f] bg-[radial-gradient(at_10%_33%,hsl(161.54,62%,36%)_0,transparent_55%),radial-gradient(at_88%_75%,hsl(220.00,74%,18%)_0,transparent_45%)];
+}
+
+/* Glassmorphism card effect */
+.card-grad {
+  @apply backdrop-blur-[16px] backdrop-saturate-[180%] bg-[rgba(22,22,37,0.25)] border rounded-md border-solid border-[rgba(255,255,255,0.125)];
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+:where(.css-dev-only-do-not-override-kcu2vh).ant-form-item .ant-form-item-label >label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  height: 32px;
+  color: rgba(252, 252, 252, 0.88);
+  font-size: 15px;
+  position: relative;
+  top: 5px;
 }

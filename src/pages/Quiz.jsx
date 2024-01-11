@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import NET from "vanta/dist/vanta.net.min";
 import * as THREE from "three";
-import Leaderboard from '../components/Leaderboard.jsx';
 
 const Option = ({
   optionValue,
@@ -12,13 +11,12 @@ const Option = ({
   changeCorrectOption
 }) => {
   return (
-    
     <aside className="relative">
       <span
         className={` absolute p-1 ${
           correctOption === optionLabel
             ? 'bg-green-400 border-transparent'
-            : 'bg-gray-200/70 border-black'
+            : 'bg-white/50 border-black'
         } border top-1/4 left-2 hover:cursor-pointer`}
         onClick={() => changeCorrectOption(optionLabel)}
       >
@@ -41,7 +39,7 @@ const Option = ({
         </svg>
       </span>
       <input
-        className="text-center rounded-md p-3 bg-white/80 w-full"
+        className="text-start rounded-md p-3 bg-white/30 w-full pl-12"
         placeholder={placeholder}
         value={optionValue}
         onChange={(e) => onChangeHandler(false, e.target.value, optionLabel)}
@@ -86,12 +84,12 @@ const EditQuizCard = ({ quizProp, questionNumber, setEdit, setQuestions }) => {
     question.question === '' ||
     question.options.filter(({ option }) => option === '').length > 1;
   return (
-    <li className="px-4 py-3 border rounded-lg shadow-sm space-y-2  w-1/2">
-      <header className="flex justify-between items-center border-b-2 pb-1">
-        <h1>Question {questionNumber}</h1>
-        <section className="flex justify between">
+    <li className="px-4 py-3 w-[85%] border rounded-lg shadow-sm space-y-2 bg-white card-grad">
+       <header className="flex justify-between items-center pb-3 border-b-white/60 border-b-[0.8px] shadow-md">
+         <h1 className="text-white/70">Question {questionNumber}</h1>
+        <section className="flex justify-between">
           <button
-            className="px-2 rounded border border-black hover:text-green-600 disabled:brightness-50 disabled:hover:cursor-not-allowed"
+            className="px-3 py-[2px] rounded hover:text-green-600 disabled:brightness-50 disabled:hover:cursor-not-allowed bg-white/20"
             onClick={clickHandler}
             disabled={isDisabled()}
           >
@@ -103,13 +101,14 @@ const EditQuizCard = ({ quizProp, questionNumber, setEdit, setQuestions }) => {
       <main className="flex flex-col">
         <textarea
           value={question?.question}
-          className="resize-none font-semibold"
+          className="resize-none font-semibold text-xl mb-2 px-2 rounded-md bg-white/20 text-white"
+          placeholder="question goes here.."
           onChange={(e) => changeHandler(true, e.target.value)}
         />
-        <small className="text-gray-500 grow text-start ">answer choices</small>
-        <section className="grid grid-cols-2 justify-center items-center gap-y-2 gap-x-4 mt-2">
+        <small className="text-gray-500 grow text-start ">Change the Options</small>
+        <section className="grid grid-cols-2 justify-center items-center gap-y-2 gap-x-2 mt-2">
           {question.options.map((option, index) => (
-            <aside className="flex justify-start items-center space-x-1">
+            <aside className="flex justify-start items-center space-x-1 p-2 bg-white/20 rounded-md">
               <p
                 className={`w-4 h-4 ${
                   option.isCorrect ? 'bg-green-500' : 'bg-red-600'
@@ -119,7 +118,7 @@ const EditQuizCard = ({ quizProp, questionNumber, setEdit, setQuestions }) => {
               </p>
               <input
                 value={option?.option}
-                className="text-sm max-w-xs text-left p-1"
+                className="text-md max-w-xs text-left p-1 rounded-md bg-transparent text-white"
                 placeholder="Enter Option"
                 onChange={(e) => changeHandler(false, e.target.value, index)}
               />
@@ -151,9 +150,9 @@ const QuizCard = ({ quizProp, questionNumber, setQuestions }) => {
       />
     );
   return (
-    <li className="px-4 py-3 border rounded-lg shadow-sm space-y-2  w-1/2">
-      <header className="flex justify-between border-b-2 pb-1">
-        <h1>Question {questionNumber}</h1>
+    <li className="px-4 py-3 w-[85%] border rounded-lg shadow-sm space-y-2 card-grad">
+      <header className="flex justify-between items-center pb-3 border-b-white/60 border-b-[0.8px] shadow-md">
+        <h1 className="text-white/70">Question {questionNumber}</h1>
         <section className="flex justify between">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +160,7 @@ const QuizCard = ({ quizProp, questionNumber, setQuestions }) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 hover:text-green-600 hover:cursor-pointer"
+            className="w-6 h-6 hover:text-green-600 hover:cursor-pointer text-white"
             onClick={() => setEdit(true)}
           >
             <path
@@ -177,7 +176,7 @@ const QuizCard = ({ quizProp, questionNumber, setQuestions }) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 hover:text-red-600 hover:cursor-pointer"
+            className="w-6 h-6 hover:text-red-600 hover:cursor-pointer text-white"
             onClick={deleteQuizCard}
           >
             <path
@@ -190,19 +189,19 @@ const QuizCard = ({ quizProp, questionNumber, setQuestions }) => {
       </header>
 
       <main className="flex flex-col">
-        <h1 className="min-w-sm font-semibold">{quizProp?.question}</h1>
-        <small className="text-gray-500 grow text-start ">answer choices</small>
-        <section className="grid grid-cols-2 justify-center items-center gap-y-2 gap-x-4 mt-2">
+        <h1 className="min-w-sm font-semibold text-2xl mb-1 text-white">{quizProp?.question}</h1>
+        <small className="text-gray-500 grow text-start">answer choices</small>
+        <section className="grid grid-cols-2 justify-center items-center gap-y-2 gap-x-2 mt-2">
           {quizProp.options.map((option) => (
-            <aside className="flex justify-start items-center space-x-1">
+            <aside className="flex justify-start items-center space-x-1 p-2 rounded-md bg-white/20">
               <p
-                className={`w-4 h-4 ${
+                className={`w-4 h-4 mr-1 ${
                   option.isCorrect ? 'bg-green-500' : 'bg-red-600'
                 } rounded-full`}
               >
                 {' '}
               </p>
-              <p className="text-sm max-w-xs text-left">{option?.option}</p>
+              <p className="text-[16px] max-w-xs text-left text-white">{option?.option}</p>
             </aside>
           ))}
         </section>
@@ -246,7 +245,7 @@ const Quiz = () => {
 
 
 
-      const [vantaEffect, setVantaEffect] = useState(0);
+      const [vantaEffect, setVantaEffect] = useState(1);
   const vantaRef = useRef(null);
 
   useEffect(() => {
@@ -263,29 +262,25 @@ const Quiz = () => {
           scale: 1.0,
           scaleMobile: 1.0,
           color: 0xc1ff,
-          color: 0x1a99ff,
           backgroundColor: 0x0,
           points: 20.00,
           maxDistance: 22.00
         })
       );
     }
-    return () => {
-      if (vantaEffect) vantaEffect.destroy();
-    };
   }, [vantaEffect]);
 
   return (
     <div ref={vantaRef} className="w-screen h-screen flex justify-around items-start overflow-x-hidden">
-      <div className="w-1/2 h-full ">
-        <section className="w w-2/5 bg-gray-200/70 py-3 mt-1 px-2.5 rounded-xl flex flex-col justify-between h-[32%] shadow-sm shadow-gray-600 fixed top-1/3 left-10">
+      <div className="w-[55%] h-full flex justify-center items-center fixed left-0">
+        <section className=" w-[95%] backdrop-blur-md py-8 px-4 rounded-xl flex flex-col justify-between gap-4 card-grad">
           <textarea
             value={question}  
-            className="w-full h-2/5  text-center placeholder:text-black bg-white/80 rounded-lg resize-none pt-[5%]"
+            className="w-full text-start text-lg placeholder:text-black bg-white/30 rounded-lg resize-none py-2 pb-6 px-4"
             placeholder="question goes here..."
             onChange={(e) => onChangeHandler(true, e.target.value)}
           />
-          <main className="grid grid-cols-2 justify-center items-center gap-y-2 gap-x-4 mx-2 ">
+          <main className="grid grid-cols-2 justify-center items-center gap-y-2 gap-x-2">
             <Option
               optionValue={options[1]}
               optionLabel={'1'}
@@ -319,12 +314,12 @@ const Quiz = () => {
               changeCorrectOption={changeCorrectOption}
             />
           </main>
-          <aside className="flex mx-2">
-            <span className="py-1 px-5 bg-white/80 rounded-sm  min-w-[30%]">
-              Correct Option: {correctOption !== '' ? correctOption : '-'}
+          <aside className="flex">
+            <span className="py-3 px-2 bg-white/30 rounded-md min-w-[30%] text-md font-semibold">
+              Correct Option = {correctOption !== '' ? correctOption : '😒'}
             </span>
             <button
-              className="py-1 px-5 bg-white/80 ml-5 rounded-sm disabled:brightness-75 disabled:cursor-not-allowed"
+              className="px-5 ml-3 rounded-md disabled:brightness-75 disabled:cursor-not-allowed bg-[#42c072]"
               disabled={correctOption === '' || question === ''}
               onClick={clickHandler}
             >
@@ -333,7 +328,7 @@ const Quiz = () => {
           </aside>
         </section>
       </div>
-      <ul className=" grow flex flex-col justify-center items-center self-start space-y-10 mt-10">
+      <ul className="w-[45%] flex flex-col justify-center items-center self-start space-y-2 mt-4 overflow-y-auto relative left-[28%] mb-4">
         {questions.map((question, index) => (
           <QuizCard
             key={index}
@@ -343,7 +338,7 @@ const Quiz = () => {
           />
         ))}
       </ul>
-    <Leaderboard/>
+    {/* <Leaderboard/> */}
     </div>
   );
 };
