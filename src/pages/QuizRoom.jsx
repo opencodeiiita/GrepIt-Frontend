@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Leaderboard from '../components/Leaderboard';
+import { ReactComponent as LogoImg } from '../assets/images/logo.svg';
 
 const QuizRoom = () => {
   const dummyData = [
@@ -115,45 +116,40 @@ const QuizRoom = () => {
 
   return (
     <div className="flex">
-      <div className="w-3/5 p-4">
+      <div className="w-3/5 p-4 flex flex-col gap-2">
       {timer > 0 && !showResults && (
-          <div className="flex items-center justify-center mt-2 relative">
-            <svg className="animate-spin h-16 w-16 text-blue-500" viewBox="0 0 24 24">
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0112 4.472v3.293A7.962 8.962 0 014.472 17H6zm12-1.206A8.001 8.001 0 0112 19.528V16.83a7.962 8.962 0 017.528-7.528V17h-1.528z"
-              ></path>
-            </svg>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl text-blue-500 font-bold">
-              {timer}
+        <div className='flex justify-between items-center'> 
+          <span className="flex flex-row items-center">
+            <LogoImg height={'72px'} width={'72px'} />
+            <h1 className='text-white text-2xl font-semibold'>GrepIt</h1>
+          </span>
+          <div className="flex items-center justify-center mt-2 mb-4 relative">
+            <p className='text-lg text-white/30 relative right-10'> Time Remaining : </p>
+            <div className="absolute top-1/2 right-[-4%] transform -translate-x-1/2 -translate-y-1/2 text-2xl text-green-500 font-bold">
+             {timer}
             </div>
           </div>
+        </div>
+       
         )}
-        <div className="bg-gray-200 p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl mb-4">
-          {questions[currentQuestionIndex].question}
-          </h2>
-          <div className="grid grid-cols-2 gap-4">
+        <div className="p-6 rounded-lg shadow-md card-grad">
+            <p className='text-md text-white/60 mb-1'>Question { currentQuestionIndex + 1 }</p>
+            <h2 className="text-2xl mb-4 font-semibold text-white">
+            {questions[currentQuestionIndex].question}
+            </h2>
+          
+          <div className="grid grid-cols-2 gap-2">
             {questions[currentQuestionIndex].options.map((option, index) => (
               <div
                 key={index}
-                className={`p-4 border rounded-md ${
+                className={`px-4 py-3  rounded-md  ${
                   showResults
                     ? questions[currentQuestionIndex].correctAnswer === option
                       ? 'bg-green-200'
                       : questions[currentQuestionIndex].selectedAnswer === index
                       ? 'bg-red-200'
-                      : 'bg-white'
-                    : 'bg-white'
+                      : 'bg-white/20 '
+                    : 'bg-white/20 hover:bg-white/40'
                 }`}
               >
                 <input
@@ -167,7 +163,7 @@ const QuizRoom = () => {
               </div>
             ))}
           </div>
-          <div className="mt-6">
+          <div className="mt-4">
             {showResults && currentQuestionIndex !== 0 && (
               <button
                 onClick={handlePreviousQuestion}
@@ -197,20 +193,21 @@ const QuizRoom = () => {
           </div>
         </div>
         {showResults && (
-          <div>
-            <h2 className="text-xl font-semibold mb-4 mt-8">Quiz Results</h2>
-            <p>Total Score: {score}</p>
+          <div className='border p-6 mt-4 rounded-md'>
+            <h2 className="text-md font-semibold text-white/90">Quiz Results</h2>
+            <p className='text-lg font-semibold text-white/80 tracking-wide mb-3'>Total Score: {score}</p>
             {incorrectAnswers.length > 0 && (
-              <div>
-                <h3 className="text-lg font-semibold mt-4 mb-2">Incorrect Answers:</h3>
+              <div className='text-white/60'>
+                <h3 className="text-lg font-semibold text-white/80 mb-2">Incorrect Answers:</h3>
                 <ul>
                   {incorrectAnswers.map((answer, index) => (
-                    <li key={index}>
-                      <p>
+                    <li key={index} className='border p-2 card-grad mb-2'>
+                      <p>question {currentQuestionIndex + 1}</p>
+                      <p className='text-lg mb-1'>
                         <strong>{answer.question}</strong>
                       </p>
-                      <p>Correct Answer: {answer.correctAnswer}</p>
-                      <p>Your Answer: {answer.selectedAnswer}</p>
+                      <p className='text-green-400'>Correct Answer: {answer.correctAnswer}</p>
+                      <p className='text-red-400'>Your Answer: {answer.selectedAnswer}</p>
                     </li>
                   ))}
                 </ul>
